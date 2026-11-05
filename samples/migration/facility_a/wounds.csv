@@ -1,0 +1,5 @@
+wound_id,mrn,icd10,site,length_cm,acquired_on
+W1,MRN1001,L89.152,sacrum,3.2,2026-01-15
+W2,MRN1003,L97.529,heel,2.0,2026-02-01
+W3,MRN1001,NOT_A_CODE,arm,1.0,2026-03-01
+W4,MRN1005,L89.90,sacrum,1.0,2026-03-01

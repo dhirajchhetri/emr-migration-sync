@@ -1,0 +1,5 @@
+prescription_id,mrn,drug_description,ndc,rxnorm,sig,status
+RX1,MRN1001,Silver sulfadiazine 1% cream,00456-0123-01,979334,Apply a thin layer daily,active
+RX2,MRN1003,Collagenase ointment,00168-0123-01,12345678,Apply daily,active
+RX3,MRN4040,Example ointment,00000-0000-00,111,Apply daily,active
+RX4,MRN1004,Bad code ointment,12AB,222,Apply daily,active
