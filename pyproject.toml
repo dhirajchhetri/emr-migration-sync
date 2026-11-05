@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emr-migration-sync"
+version = "0.1.0"
+description = "HL7 v2 and NCPDP SCRIPT ingest, FHIR R4 mapping, and facility migration on AWS."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Dhiraj Chhetri" }]
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3", "ruff>=0.7", "boto3>=1.35"]
+infra = ["aws-cdk-lib>=2.170.0", "constructs>=10.4,<11"]
+spark = ["pyspark>=3.5"]
+
+[project.scripts]
+emr-sync = "emr_sync.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "jobs", "infra"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["emr_sync"]
