@@ -1,0 +1,5 @@
+{"op":"I","table":"patients","pk":"MRN9001","sequence":1,"after":{"mrn":"MRN9001","family_name":"LEE","given_name":"SARA","birth_date":"1990-05-05","sex":"F","phone":"3035550100"}}
+{"op":"U","table":"patients","pk":"MRN9001","sequence":2,"after":{"mrn":"MRN9001","family_name":"LEE","given_name":"SARA","birth_date":"1990-05-05","sex":"F","phone":"3035550199"}}
+{"op":"I","table":"medications","pk":"RX9001","sequence":3,"after":{"prescription_id":"RX9001","mrn":"MRN9001","drug_description":"Example cream","ndc":"00456012301","rxnorm":"979334","sig":"Apply daily"}}
+{"op":"D","table":"medications","pk":"RX9001","sequence":4}
+{"op":"U","table":"patients","pk":"MRN9001","sequence":2,"after":{"mrn":"MRN9001","family_name":"LEE","given_name":"SARA","birth_date":"1990-05-05","sex":"F","phone":"3035550101"}}
