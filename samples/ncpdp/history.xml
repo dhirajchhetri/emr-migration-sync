@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message version="2017071">
+  <Header>
+    <MessageId>RXH1001</MessageId>
+    <SentTime>2026-11-02T12:30:00Z</SentTime>
+  </Header>
+  <Body>
+    <RxHistoryResponse>
+      <Patient>
+        <MedicalRecordNumber>MRN1001</MedicalRecordNumber>
+        <LastName>DOE</LastName>
+        <FirstName>JANE</FirstName>
+        <DateOfBirth>1980-03-15</DateOfBirth>
+        <Gender>F</Gender>
+      </Patient>
+      <Medication>
+        <DrugDescription>Collagenase ointment</DrugDescription>
+        <Ndc>00168012301</Ndc>
+        <RxNorm>12345678</RxNorm>
+        <Sig>Apply daily</Sig>
+      </Medication>
+      <Medication>
+        <DrugDescription>Silver sulfadiazine 1% cream</DrugDescription>
+        <Ndc>00456012301</Ndc>
+        <RxNorm>979334</RxNorm>
+        <Sig>Apply a thin layer to the wound daily</Sig>
+      </Medication>
+    </RxHistoryResponse>
+  </Body>
+</Message>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message version="2017071">
+  <Header>
+    <MessageId>RX1001</MessageId>
+    <SentTime>2026-11-02T15:00:00Z</SentTime>
+    <From>ERX_GATEWAY</From>
+    <To>WOUNDCARE</To>
+  </Header>
+  <Body>
+    <NewRx>
+      <Patient>
+        <MedicalRecordNumber>MRN1001</MedicalRecordNumber>
+        <Name>
+          <LastName>DOE</LastName>
+          <FirstName>JANE</FirstName>
+        </Name>
+        <DateOfBirth>1980-03-15</DateOfBirth>
+        <Gender>F</Gender>
+        <Phone>5125550100</Phone>
+      </Patient>
+      <Medication>
+        <DrugDescription>Silver sulfadiazine 1% cream</DrugDescription>
+        <Ndc>00456-0123-01</Ndc>
+        <RxNorm>979334</RxNorm>
+        <Quantity>1</Quantity>
+        <Sig>Apply a thin layer to the wound daily</Sig>
+        <PrescriberOrderNumber>PON1001</PrescriberOrderNumber>
+      </Medication>
+    </NewRx>
+  </Body>
+</Message>

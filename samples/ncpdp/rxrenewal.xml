@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message xmlns="http://www.ncpdp.org/schema/SCRIPT" version="2017071">
+  <Header>
+    <MessageId>RX1003</MessageId>
+    <RelatesToMessageId>RX1001</RelatesToMessageId>
+    <SentTime>2026-11-04T15:00:00Z</SentTime>
+  </Header>
+  <Body>
+    <RxRenewalRequest>
+      <Patient>
+        <MedicalRecordNumber>MRN1001</MedicalRecordNumber>
+        <LastName>DOE</LastName>
+        <FirstName>JANE</FirstName>
+        <DateOfBirth>1980-03-15</DateOfBirth>
+        <Gender>F</Gender>
+      </Patient>
+      <Medication>
+        <DrugDescription>Silver sulfadiazine 1% cream</DrugDescription>
+        <DrugCoded>
+          <NDC>00456012301</NDC>
+        </DrugCoded>
+        <RxNorm>979334</RxNorm>
+        <Directions>Apply a thin layer to the wound daily</Directions>
+        <PrescriberOrderNumber>PON1001</PrescriberOrderNumber>
+      </Medication>
+    </RxRenewalRequest>
+  </Body>
+</Message>

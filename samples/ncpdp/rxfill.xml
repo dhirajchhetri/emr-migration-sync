@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message version="2017071">
+  <Header>
+    <MessageId>RX1004</MessageId>
+    <RelatesToMessageId>RX1001</RelatesToMessageId>
+    <SentTime>2026-11-02T18:00:00Z</SentTime>
+  </Header>
+  <Body>
+    <RxFill>
+      <Patient>
+        <MedicalRecordNumber>MRN1001</MedicalRecordNumber>
+        <LastName>DOE</LastName>
+        <FirstName>JANE</FirstName>
+        <DateOfBirth>1980-03-15</DateOfBirth>
+        <Gender>F</Gender>
+      </Patient>
+      <Medication>
+        <DrugDescription>Silver sulfadiazine 1% cream</DrugDescription>
+        <Ndc>00456012301</Ndc>
+        <PrescriberOrderNumber>PON1001</PrescriberOrderNumber>
+      </Medication>
+    </RxFill>
+  </Body>
+</Message>
