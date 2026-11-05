@@ -13,7 +13,7 @@ license = { text = "MIT" }
 
 [project.optional-dependencies]
 dev = ["pytest>=8.3", "ruff>=0.7", "boto3>=1.35"]
-infra = ["aws-cdk-lib>=2.170.0", "constructs>=10.4,<11"]
+infra = ["aws-cdk-lib==2.275.0", "constructs>=10.4,<12"]
 spark = ["pyspark>=3.5"]
 
 [project.scripts]

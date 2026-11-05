@@ -1,0 +1,6 @@
+{
+  "app": "python3 -m infra.app",
+  "context": {
+    "@aws-cdk/core:checkSecretUsage": true
+  }
+}

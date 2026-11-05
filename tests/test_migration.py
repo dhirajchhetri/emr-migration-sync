@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from emr_sync.handlers.load import handle_load
@@ -50,6 +51,27 @@ def test_a_missing_row_is_a_gap():
     assert report["status"] == "gap"
     assert report["entities"][0]["missing_ids"] == ["MRN2"]
     assert report["entities"][0]["disposition"] == "gap"
+
+
+def test_load_handler_reads_a_curated_manifest():
+    pipeline = build_memory_pipeline()
+    patient = {
+        "mrn": "MRN1",
+        "family_name": "DOE",
+        "given_name": "JANE",
+        "birth_date": "1980-03-15",
+        "sex": "F",
+    }
+    pipeline.objects.put("curated", "fac/patients.jsonl", json.dumps(patient) + "\n")
+    pipeline.objects.put("curated", "fac/wounds.jsonl", "")
+    pipeline.objects.put("curated", "fac/medications.jsonl", "")
+    report = handle_load(
+        {"facility_id": "facility_a", "curated_prefix": "s3://curated/fac"},
+        pipeline,
+    )
+    assert report["status"] == "accounted"
+    assert report["entities"][0]["matched_count"] == 1
+    assert len(pipeline.documents.list_resources("Patient")) == 1
 
 
 def test_load_and_reconcile_handlers_write_the_report():

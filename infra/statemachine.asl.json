@@ -1,0 +1,68 @@
+{
+  "Comment": "Normalize a facility extract, load the accepted rows, and reconcile counts.",
+  "StartAt": "NormalizeExtract",
+  "States": {
+    "NormalizeExtract": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "emr-sync-normalize-facility",
+        "Arguments": {
+          "--facility_id.$": "$.facility_id",
+          "--input_prefix.$": "$.input_prefix",
+          "--curated_prefix.$": "$.curated_prefix",
+          "--quarantine_prefix.$": "$.quarantine_prefix"
+        }
+      },
+      "ResultPath": "$.glue",
+      "Next": "LoadCurated",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "MarkFailed"
+        }
+      ]
+    },
+    "LoadCurated": {
+      "Type": "Task",
+      "Resource": "${LoadFunctionArn}",
+      "ResultPath": "$.report",
+      "Next": "Reconcile",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "MarkFailed"
+        }
+      ]
+    },
+    "Reconcile": {
+      "Type": "Task",
+      "Resource": "${ReconcileFunctionArn}",
+      "Parameters": {
+        "report.$": "$.report"
+      },
+      "Next": "Gate"
+    },
+    "Gate": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.status",
+          "StringEquals": "accounted",
+          "Next": "PublishReport"
+        }
+      ],
+      "Default": "MarkFailed"
+    },
+    "PublishReport": {
+      "Type": "Succeed"
+    },
+    "MarkFailed": {
+      "Type": "Fail",
+      "Error": "MigrationFailed",
+      "Cause": "Normalize, load, or reconciliation did not account for every row."
+    }
+  }
+}
