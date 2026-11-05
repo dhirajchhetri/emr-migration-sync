@@ -63,15 +63,28 @@ def build_patient(person: Person, source_system: str, partner_id: str) -> dict:
 
 
 def merge_source_identity(existing: dict, person: Person, source_system: str) -> dict:
-    """Apply an update from the system that already owns this medical record number."""
+    """Apply an update from the system that already owns this medical record number.
+
+    Fields the message does not carry are left alone. A result message with no
+    phone, for example, must not erase a phone recorded on admission.
+    """
     updated = copy.deepcopy(existing)
-    partner = (existing.get("managingOrganization") or {}).get("display", "")
-    fresh = build_patient(person, source_system, partner)
-    for field in ("name", "gender", "birthDate", "telecom", "address"):
-        if field in fresh:
-            updated[field] = fresh[field]
-        elif field in updated and field not in fresh:
-            updated.pop(field)
+    if person.family_name or person.given_name:
+        updated["name"] = [
+            {
+                "family": person.family_name,
+                "given": [part for part in (person.given_name, person.middle_name) if part],
+            }
+        ]
+    if person.sex:
+        updated["gender"] = _GENDER.get(person.sex, "unknown")
+    if person.birth_date is not None:
+        updated["birthDate"] = to_fhir_date(person.birth_date)
+    if person.phone:
+        updated["telecom"] = [{"system": "phone", "value": person.phone}]
+    address = _address(person)
+    if address:
+        updated["address"] = [address]
     updated["identifier"] = _with_identifier(
         updated.get("identifier", []), source_system, person.mrn
     )

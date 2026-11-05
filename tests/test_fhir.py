@@ -101,6 +101,9 @@ def test_source_update_changes_phone_and_round_trips_demographics():
     assert restored.family_name == "DOE"
     assert restored.birth_date.isoformat() == "1980-03-15"
     assert restored.sex == "F"
+    partial = merge_source_identity(updated, _hl7("oru_r01.hl7").person, "PARTNER_EMR")
+    assert partial["telecom"][0]["value"] == "5125550199"
+    assert partial["address"][0]["line"] == ["500 OAK AVE"]
 
 
 def test_oru_maps_loinc_observations_and_a_report():
