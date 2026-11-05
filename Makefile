@@ -14,3 +14,7 @@ format:
 
 demo:
 	$(PYTHON) -m emr_sync.cli demo
+
+synth:
+	$(PYTHON) -m pip install -e ".[infra]"
+	npx --yes aws-cdk@2.1147.0 synth
